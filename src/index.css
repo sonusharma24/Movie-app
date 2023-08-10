@@ -15,6 +15,42 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color: #7950F2 #343A40;
+} */
+
+/* Chrome, Edge and Safari */
+.box::-webkit-scrollbar {
+  width: 8px;
+  width: 8px;
+}
+.box::-webkit-scrollbar-track {
+  border-radius: 1px;
+  background-color: #343A40;
+}
+
+.box::-webkit-scrollbar-track:hover {
+  background-color: #343A40;
+}
+
+.box::-webkit-scrollbar-track:active {
+  background-color: #343A40;
+}
+
+.box::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #7950F2;
+}
+
+.box::-webkit-scrollbar-thumb:hover {
+  background-color: #7950F2;
+}
+
+.box::-webkit-scrollbar-thumb:active {
+  background-color: #7950F2;
+}
+
 
 html {
   font-size: 62.5%;
@@ -138,7 +174,7 @@ body {
 .list {
   list-style: none;
   padding: 0.8rem 0;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .list-watched {
