@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NavBar from "./Components/NavBar/NavBar";
 import Logo from "./Components/NavBar/Logo";
 import MoviesFound from "./Components/NavBar/MoviesFound";
@@ -8,31 +8,10 @@ import MoviesBox from "./Components/Movies/MoviesBox/MoviesBox";
 import MoviesList from "./Components/Movies/MoviesList/MoviesList";
 import MoviesSummary from "./Components/Movies/MoviesSummary/MoviesSummary";
 import WatchedMoviesList from "./Components/Movies/WatchedMovies/WatchedMoviesList";
-
-const tempMovieData = [
-  {
-    imdbID: "tt1375666",
-    Title: "Inception",
-    Year: "2010",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-  },
-  {
-    imdbID: "tt0133093",
-    Title: "The Matrix",
-    Year: "1999",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-  },
-  {
-    imdbID: "tt6751668",
-    Title: "Parasite",
-    Year: "2019",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
-  },
-];
-
+import Loader from "./Components/Loader/Loader";
+import ErrorMessage from "./Components/ErrorMessage/ErrorMessage";
+import EmptyMovies from "./Components/ErrorMessage/EmptyMovies";
+import { useFetch } from "./Hooks/useFetch";
 const tempWatchedData = [
   {
     imdbID: "tt1375666",
@@ -57,11 +36,13 @@ const tempWatchedData = [
 ];
 
 function App() {
-  const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
-  console.log(watched);
+  const [page, setPage] = useState(1);
 
+  const API_URL = `https://www.omdbapi.com/?apikey=f6d85403&s=${query}&page=${page}`;
+
+  const { data: movies, isLoading, errorMessage } = useFetch(API_URL, query);
   return (
     <>
       <NavBar movies={movies}>
@@ -72,7 +53,14 @@ function App() {
 
       <Main>
         <MoviesBox>
-          <MoviesList movies={movies} />
+          {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+          {isLoading && <Loader />}
+          {!errorMessage && !isLoading && movies.length > 0 ? (
+            <MoviesList movies={movies} />
+          ) : (
+            <EmptyMovies />
+          )}
+          {}
         </MoviesBox>
         <MoviesBox>
           <MoviesSummary watched={watched} />

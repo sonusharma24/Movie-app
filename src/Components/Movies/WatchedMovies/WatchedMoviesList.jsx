@@ -2,7 +2,6 @@ import WatchedMoviesItem from "./WatchedMoviesItem";
 
 /* eslint-disable react/prop-types */
 const WatchedMoviesList = ({ watched }) => {
-  console.log(watched);
   return (
     <ul className="list">
       {watched.map((movie) => (
