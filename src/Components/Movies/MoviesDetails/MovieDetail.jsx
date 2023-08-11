@@ -73,7 +73,6 @@ const MovieDetail = ({
 
     getWatchedMovie(newMovieObj);
     setShowMovieDetails(false);
-    console.log(newMovieObj);
   };
 
   useEffect(() => {

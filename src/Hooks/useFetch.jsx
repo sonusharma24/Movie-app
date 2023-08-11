@@ -18,8 +18,6 @@ export const useFetch = (API_URL, query) => {
         if (data.Response === "False") throw new Error("movies not found");
         setIsLoading(false);
         setData(data.Search);
-
-        console.log(data);
       } catch (error) {
         if (error.name !== "AbortError") setErrorMessage(error.message);
       } finally {
