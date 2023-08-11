@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
 import MoviesItem from "./MoviesItem";
 
-const MoviesList = ({ movies }) => {
+const MoviesList = ({ movies, movieDetailHandler }) => {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
-        <MoviesItem key={movie.imdbID} movie={movie} />
+        <MoviesItem
+          movieDetailHandler={movieDetailHandler}
+          key={movie.imdbID}
+          movie={movie}
+        />
       ))}
     </ul>
   );

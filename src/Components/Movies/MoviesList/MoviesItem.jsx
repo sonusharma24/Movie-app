@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
-const MoviesItem = ({ movie }) => {
+const MoviesItem = ({ movie, movieDetailHandler }) => {
   return (
-    <li>
+    <li onClick={() => movieDetailHandler(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>

@@ -30,6 +30,7 @@ export const useFetch = (API_URL, query) => {
     if (query < 3) {
       setData([]);
       setErrorMessage("");
+      return;
     }
 
     fetchMovies();

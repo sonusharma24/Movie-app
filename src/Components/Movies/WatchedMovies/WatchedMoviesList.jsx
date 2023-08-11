@@ -1,11 +1,15 @@
 import WatchedMoviesItem from "./WatchedMoviesItem";
 
 /* eslint-disable react/prop-types */
-const WatchedMoviesList = ({ watched }) => {
+const WatchedMoviesList = ({ watched, watchedDeleteMovie }) => {
   return (
     <ul className="list">
-      {watched.map((movie) => (
-        <WatchedMoviesItem key={movie.imdbID} movie={movie} />
+      {watched?.map((movie) => (
+        <WatchedMoviesItem
+          watchedDeleteMovie={watchedDeleteMovie}
+          key={movie.imdbId}
+          movie={movie}
+        />
       ))}
     </ul>
   );
