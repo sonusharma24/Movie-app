@@ -21,7 +21,7 @@ function App() {
   const [movieId, setMovieId] = useState(null);
   const [showMovieDetails, setShowMovieDetails] = useState(false);
 
-  const API_URL = `https://www.omdbapi.com/?apikey=f6d85403&s=${query}&page=${page}`;
+  const API_URL = `https://www.omdbapi.com/?apikey=f6d85403&s=${query}`;
   // fetch movies from api
   const { data: movies, isLoading, errorMessage } = useFetch(API_URL, query);
   // get watched movies from local storage
